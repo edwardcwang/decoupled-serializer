@@ -61,8 +61,8 @@ class Demuxer(val width: Int) extends RawModule {
   val out0 = IO(Decoupled(UInt(width.W)))
   val out1 = IO(Decoupled(UInt(width.W)))
 
-  out0.valid := in.valid && in.bits(0) === false.B
-  out1.valid := in.valid && in.bits(1) === false.B
+  out0.valid := in.valid && (~in.bits(0))
+  out1.valid := in.valid && in.bits(0)
 
   out0.bits := in.bits
   out1.bits := in.bits
